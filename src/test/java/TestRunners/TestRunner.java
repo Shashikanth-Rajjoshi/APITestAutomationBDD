@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
             glue = {"StepDefs"},                  // path to your step definitions
             plugin = {"pretty", "html:target/cucumber-reports"}, // reports
             monochrome = true,                           // output formatting
-            tags = "@TestId_GP_001"                          // (optional) run tagged scenarios only
+            tags = "@TestId_GP_002"                          // (optional) run tagged scenarios only
     )
     public class TestRunner extends AbstractTestNGCucumberTests {
     }

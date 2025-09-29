@@ -1,4 +1,4 @@
-package org.shashiapiestutomation.baseTest;
+package org.shashiapiestutomation.service;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 
 import java.util.Map;
 
-public class BaseTest {
+public class CustomService {
 
-    private static final Logger logger = LogManager.getLogger(BaseTest.class);
+    private static final Logger logger = LogManager.getLogger(CustomService.class);
     public Response postAPI(Map<String,String> headerMap, Object request, String url){
             Response response = RestAssured.given().contentType(String.valueOf(ContentType.APPLICATION_JSON)).headers(headerMap).and().body(request).when().post(url);
 
