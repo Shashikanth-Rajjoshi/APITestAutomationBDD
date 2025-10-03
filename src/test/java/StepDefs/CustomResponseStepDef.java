@@ -1,6 +1,7 @@
 package StepDefs;
 
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.apache.log4j.LogManager;
@@ -41,11 +42,11 @@ public class CustomResponseStepDef {
             String jsonResponseAsString = String.valueOf(context.getDataStore().get(apiName));
             for(String key : list.get(i).keySet()){
                 if(!key.equalsIgnoreCase("APIName") && !key.equalsIgnoreCase("ResponseFileName")){
-                String pathValue = getJsonPathValueFromResponseFile(jsonResponseFile,key);
                 try {
+                    String pathValue = getJsonPathValueFromResponseFile(jsonResponseFile,key);
                     responseValue = JsonPath.read(jsonResponseAsString,pathValue).toString();
                     logger.info("Response value for Key "+key+" is "+responseValue);
-                }catch (NullPointerException np){
+                }catch (NullPointerException | PathNotFoundException np){
                     responseValue="null";
                 }
                 expectedValue = list.get(i).get(key);
